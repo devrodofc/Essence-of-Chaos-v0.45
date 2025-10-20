@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckbocntot640k"]
+
+[ext_resource type="Texture2D" uid="uid://be8klritofahb" path="res://2D Pixel Dungeon Asset Pack/character and tileset/hq720.png" id="1_36wdk"]
+[ext_resource type="Theme" uid="uid://cse7d3ijkkxic" path="res://title_font.tres" id="2_qwfvd"]
+
+[node name="FimDaDemo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -346.5
+offset_top = -197.0
+offset_right = 346.5
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_36wdk")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.51000005
+anchor_top = 0.47000003
+anchor_right = 0.51000005
+anchor_bottom = 0.47000003
+offset_left = -130.52008
+offset_top = -38.560028
+offset_right = 130.47992
+offset_bottom = 38.439972
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 27
+text = "      FIM DA DEMO. 
+Obrigado por jogar!!"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.504
+anchor_top = 0.64500004
+anchor_right = 0.504
+anchor_bottom = 0.64500004
+offset_left = -59.608032
+offset_top = -19.960022
+offset_right = 59.391968
+offset_bottom = 20.039978
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_qwfvd")
+text = "Voltar ao menu"

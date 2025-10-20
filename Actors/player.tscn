@@ -1,0 +1,164 @@
+[gd_scene load_steps=12 format=3 uid="uid://bd0qw7im72rx8"]
+
+[ext_resource type="Script" uid="uid://k4vr57177ww3" path="res://Scripts/player.gd" id="1_y2lmi"]
+[ext_resource type="Texture2D" uid="uid://catsfogvey82n" path="res://Essence of Chaos/Assets/Tiny RPG Character Asset Pack v1.02 -Free Soldier&Orc/Orc/Orc with shadows/Orc.png" id="2_y2lmi"]
+
+[sub_resource type="Animation" id="Animation_xmrs8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4bcxw"]
+resource_name = "attack"
+length = 0.7
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 16, 17, 18, 19, 20, 21]
+}
+
+[sub_resource type="Animation" id="Animation_1c8hm"]
+resource_name = "damage"
+length = 0.6
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143, 0.42857143),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_sinrj"]
+resource_name = "death"
+length = 0.57
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.14285715, 0.2857143, 0.42857143),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43]
+}
+
+[sub_resource type="Animation" id="Animation_xk7p5"]
+resource_name = "idle"
+length = 1.2
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.39999998, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_l3d2q"]
+resource_name = "run"
+length = 1.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ks2ow"]
+_data = {
+&"RESET": SubResource("Animation_xmrs8"),
+&"attack": SubResource("Animation_4bcxw"),
+&"damage": SubResource("Animation_1c8hm"),
+&"death": SubResource("Animation_sinrj"),
+&"idle": SubResource("Animation_xk7p5"),
+&"run": SubResource("Animation_l3d2q")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tvot5"]
+radius = 2.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2lmi"]
+radius = 6.0
+height = 41.999966
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 3
+script = ExtResource("1_y2lmi")
+speed = null
+max_health = null
+attack_damage = null
+
+[node name="Texture" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource("2_y2lmi")
+hframes = 8
+vframes = 6
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ks2ow")
+}
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tvot5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+
+[node name="HUD" type="CanvasLayer" parent="Camera2D"]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionAttack" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(2, -8)
+rotation = -1.5694963
+shape = SubResource("CapsuleShape2D_y2lmi")
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_animation_animation_finished"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

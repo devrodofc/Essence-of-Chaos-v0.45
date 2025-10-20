@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://deniyjjcjrgri"]
+
+[ext_resource type="Texture2D" uid="uid://cfvsoqwe30ebw" path="res://2D Pixel Dungeon Asset Pack/character and tileset/Gemini_Generated_Image_y9y9k4y9y9k4y9y9.png" id="1_qtu10"]
+[ext_resource type="Script" uid="uid://dnrva4vlmp7jf" path="res://Title/nivel_2_concluido.gd" id="1_xaepj"]
+[ext_resource type="Texture2D" uid="uid://dbabqaff3ego6" path="res://2D Pixel Dungeon Asset Pack/character and tileset/distintivos-dourados-de-nivel-de-jogo-com-estrelas-de-classificacao.png" id="2_ee4bf"]
+[ext_resource type="Theme" uid="uid://cse7d3ijkkxic" path="res://title_font.tres" id="3_kbped"]
+[ext_resource type="AudioStream" uid="uid://csu2e7ergttqc" path="res://Sounds/no_battle.mp3" id="5_v4ni1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jev7o"]
+font_size = 24
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_xaepj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_qtu10")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Separator3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "Nivel 2 concluido!!"
+label_settings = SubResource("LabelSettings_jev7o")
+
+[node name="Separator" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="VBoxContainer/CenterContainer/Control"]
+position = Vector2(0, -27)
+texture = ExtResource("2_ee4bf")
+region_enabled = true
+region_rect = Rect2(425.83563, -3.076992, 370.4173, 320.63794)
+
+[node name="Separator2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_kbped")
+text = "Proximo nivel"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_v4ni1")
+volume_db = -10.692
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfcg2gbix8qir"]
+
+[ext_resource type="Script" uid="uid://bhsbw0ayf8f7h" path="res://Actors/velho.gd" id="1_g2q8w"]
+[ext_resource type="Texture2D" uid="uid://brc6xyoxa6x4b" path="res://2D Pixel Dungeon Asset Pack/character and tileset/Dungeon_Character.png" id="1_ik02h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2q8w"]
+atlas = ExtResource("1_ik02h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu64b"]
+atlas = ExtResource("1_ik02h")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1raj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2q8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu64b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80enw"]
+radius = 6.0
+height = 14.0
+
+[node name="Velho" type="CharacterBody2D"]
+script = ExtResource("1_g2q8w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m1raj")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.78526455
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_80enw")

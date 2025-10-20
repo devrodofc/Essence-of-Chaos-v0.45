@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwc1hjnytxbr1"]
+
+[ext_resource type="Script" uid="uid://morsl5ei86ad" path="res://Materials/Potions/PotionStrength/roses_doce.gd" id="1_dqh7w"]
+[ext_resource type="Texture2D" uid="uid://ce8rc36enwlyc" path="res://Materials/Potions/PotionStrength/PotionStrength.png" id="2_dqh7w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dowr"]
+atlas = ExtResource("2_dqh7w")
+region = Rect2(895, 630, 295, 315)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37iql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dowr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdkrn"]
+radius = 14.0
+
+[node name="RosesDoce" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_dqh7w")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 10.000001)
+scale = Vector2(0.07599119, 0.07599119)
+sprite_frames = SubResource("SpriteFrames_37iql")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.48724362
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(9, 10)
+shape = SubResource("CircleShape2D_gdkrn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

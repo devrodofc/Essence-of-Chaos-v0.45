@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://doc7hdcyv0m7n"]
+
+[ext_resource type="Script" uid="uid://dn50gwi3ascpa" path="res://Materials/Potions/PotionStrength/red_love_bow.gd" id="1_ln7v1"]
+[ext_resource type="Texture2D" uid="uid://ce8rc36enwlyc" path="res://Materials/Potions/PotionStrength/PotionStrength.png" id="2_ln7v1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3k5n"]
+atlas = ExtResource("2_ln7v1")
+region = Rect2(330, 682, 200, 204)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37iql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3k5n")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gdkrn"]
+radius = 11.0
+
+[node name="RedLoveBow" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_ln7v1")
+
+[node name="Anim" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 10.000001)
+scale = Vector2(0.07599119, 0.07599119)
+sprite_frames = SubResource("SpriteFrames_37iql")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.48724362
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(9, 10)
+shape = SubResource("CircleShape2D_gdkrn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
